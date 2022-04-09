@@ -2,7 +2,7 @@
 
   <!--Testing Merge-->
 
-  <ion-card *ngIf="!showCards">
+  <ion-card *ngIf="showCards == 0">
     <ion-card-header>
       <ion-card-title>Seeing Green</ion-card-title>
       <ion-card-subtitle>Test Your Sustainability</ion-card-subtitle>
@@ -14,7 +14,7 @@
   </ion-card>
 
 
-  <ion-content id="Screen One" *ngIf="showCards">
+  <ion-content id="Screen One" *ngIf="showCards == 1">
     <ion-card-header>
       <ion-card-title>Question {{qNumber}}</ion-card-title>
       <ion-card-subtitle>{{questions[testId]}}</ion-card-subtitle>
@@ -84,6 +84,12 @@
     </div>
 
 
+  </ion-content>
+
+  <ion-content *ngIf="showCards == 2">
+    <ion-card-header>
+      <ion-card-title>Score: {{score}}</ion-card-title>
+    </ion-card-header>
   </ion-content>
 
 
