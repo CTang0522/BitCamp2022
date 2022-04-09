@@ -10,7 +10,7 @@ export class AppComponent {
   show: boolean = true;
   showCards: boolean = false;
 
-
+  
   constructor() {}
 
   public async counter(x: number){
