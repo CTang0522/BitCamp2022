@@ -13,12 +13,13 @@ export class AppComponent {
   decisions: Array<number> = [];
   qNumber = 1;
   testId = 0;
-  images = ["empty", "./assets/Vegetarian.png", "./assets/Meat.png", "./assets/Mixed.png", "./assets/Beef.png", "./assets/Pork.jpg", "./assets/Poultry.jpg"];
-  text = ["empty", "VEGETARIAN", "MEAT", "MIXED", "BEEF", "PORK", "POULTRY"];
+  images = ["empty", "./assets/Vegetarian.png", "./assets/Meat.png", "./assets/Mixed.png", "./assets/Beef.png", "./assets/Pork.jpg", "./assets/Poultry.jpg",
+    "./assets/Cooking.jpg", "./assets/Local.png", "./assets/Corporation.png"];
+  text = ["empty", "VEGETARIAN", "MEAT", "MIXED", "BEEF", "PORK", "POULTRY", "HOME COOKED", "LOCAL SMALL BUSINESS", "LARGE CORPORATION"];
 
   //For the id of the selected answer, directs to the location of the next triple of answers to display
-  followingQNum = [0,-1, 3, 3];
-  questions = ["What did you eat in the past 24 hours?", -1, -1, "What made up the majority of the meat you consumed?"];
+  followingQNum = [0, 6, 3, 3, 6, 6, 6];
+  questions = ["What did you eat in the past 24 hours?", -1, -1, "What made up the majority of the meat you consumed?", -1, -1, "Where did majority of your meals come from?"];
 
   userSubscription: Subscription;
   
