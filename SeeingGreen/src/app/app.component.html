@@ -11,5 +11,68 @@
   </ion-card>
 
 
-  <ion-button size="large" color="medium" (click)="buttonPress($event)">Button</ion-button>
+  <ion-content id="Screen One" *ngIf="showCards">
+    <ion-card-header>
+      <ion-card-title>Question 1</ion-card-title>
+      <ion-card-subtitle>After lunch you have a aluminum can, what is the proper bin to throw it in?</ion-card-subtitle>
+    </ion-card-header>
+    <ion-grid *ngIf="showRow">
+      <ion-row>
+        <ion-col size-xs="6" size-md="3">
+          <ion-card class="Card1" (click)="buttonPress($event)">
+            <ion-card-content>
+              <ion-card-title>
+                COMPOSTING
+              </ion-card-title>
+              <ion-row class="progressWrapper">
+                <img src="./assets/Compost.png" style="height: 120px;width: 120px;" />
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="3">
+          <ion-card class="Card1" (click)="buttonPress($event)">
+            <ion-card-content>
+              <ion-card-title>
+                RECYCLING
+              </ion-card-title>
+              <ion-row>
+                <img src="./assets/Recycling.png" style="height: 120px;width: 120px;" class="helpIcon" />
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid *ngIf="!showRow">
+      <ion-card class="Card1" (click)="compost($event)">
+        <ion-card-content>
+          <ion-card-title>
+            COMPOSTING
+          </ion-card-title>
+          <ion-row class="progressWrapper">
+            <img src="./assets/Compost.png" style="height: 120px;width: 120px;" />
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="Card1" (click)="recycle($event)">
+        <ion-card-content>
+          <ion-card-title>
+            RECYCLING
+          </ion-card-title>
+          <ion-row>
+            <img src="./assets/Recycling.png" style="height: 120px;width: 120px;" class="helpIcon" />
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </ion-content>
+
+ 
+  <ion-button *ngIf= "show" size="large" color="success" (click)="buttonPress($event)">Start</ion-button>
+  <ion-button *ngIf= "!show" size="large" color="success" (click)="buttonPress($event)">Restart</ion-button>
 </ion-app>
