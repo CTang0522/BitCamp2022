@@ -28,6 +28,8 @@ export class AppComponent {
     -1, -1, "How did you get to class today?", -1, -1, "What kind of car do you or your family own? Answer Electric if none.", 
     -1, -1, "How long was your shower today?", -1, -1, "Which of these are not one of the UN’s Sustainable Development Goals?"];
 
+  points = [0,5,-10,-5,-15,-10,-5,5,5,-5,5,-5,-5,-10,5,-3,0,-10,-5,-5,5,-5,-5,-10,5]
+
   showScore = false;
 
   userSubscription: Subscription;
@@ -61,7 +63,7 @@ export class AppComponent {
   }
 
   public async choice(ev: any, value: number, id: number){
-    this.counter(value);
+    this.counter(this.points[id]);
     this.nextQ(id);
   }
 

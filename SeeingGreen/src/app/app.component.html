@@ -16,8 +16,12 @@
 
   <ion-content id="Screen One" *ngIf="showCards == 1">
     <ion-card-header>
-      <ion-card-title>Question {{qNumber}}</ion-card-title>
-      <ion-card-subtitle>{{questions[testId]}}</ion-card-subtitle>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <ion-card-title>Question {{qNumber}}</ion-card-title>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <ion-card-subtitle>{{questions[testId]}}</ion-card-subtitle>
+      </div>
     </ion-card-header>
 
     <div style="display: flex; align-items: center; justify-content: center;">
@@ -73,13 +77,13 @@
           </ion-card>
 
         </div>
-          <ion-row>
-            <h1>Score: {{score}}</h1>
-          </ion-row>
-          <ion-row>
-            <h1>Choices: {{decisions}}</h1>
-          </ion-row>
-        
+        <ion-row>
+          <h1>Score: {{score}}</h1>
+        </ion-row>
+        <ion-row>
+          <h1>Choices: {{decisions}}</h1>
+        </ion-row>
+
       </ion-grid>
     </div>
 
