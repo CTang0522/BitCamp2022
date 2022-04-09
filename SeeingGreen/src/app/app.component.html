@@ -13,19 +13,19 @@
 
   <ion-content id="Screen One" *ngIf="showCards == 1">
     <ion-card-header>
-      <div style="display: flex; align-items: center; justify-content: center;">
+      <div style="display: flex; align-items: center; justify-content: center; position: absolute;">
         <ion-card-title>Question {{qNumber}}</ion-card-title>
       </div>
-      <div style="display: flex; align-items: center; justify-content: center;">
+      <div style="display: flex; align-items: center; justify-content: center; position: absolute; top: 60px;">
         <ion-card-subtitle>{{questions[testId]}}</ion-card-subtitle>
       </div>
     </ion-card-header>
 
-    <div style="display: flex; align-items: center; justify-content: center;">
+    <div style="display: flex; align-items: center; justify-content: center; height: 80%; position: absolute; width: 100%; bottom: 100px;">
       <ion-grid>
         <div>
 
-          <ion-card class="Card1" (click)="choice($event,2,testId+1)">
+          <ion-card class="Card1" (click)="choice($event,2,testId+1)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-card-title>
@@ -34,14 +34,14 @@
               </div>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-row class="progressWrapper">
-                  <img src={{images[testId+1]}} style="height: 120px;width: 120px;" />
+                  <img src={{images[testId+1]}} style="height: 100px;width: 100px;" />
                 </ion-row>
               </div>
             </ion-card-content>
           </ion-card>
 
 
-          <ion-card class="Card1" (click)="choice($event, 5,testId+2)">
+          <ion-card class="Card1" (click)="choice($event, 5,testId+2)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-card-title>
@@ -51,13 +51,13 @@
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
 
                 <ion-row>
-                  <img src={{images[testId+2]}} style="height: 120px;width: 120px;" class="helpIcon" />
+                  <img src={{images[testId+2]}} style="height: 100px;width: 100px;" class="helpIcon" />
                 </ion-row>
               </div>
             </ion-card-content>
           </ion-card>
 
-          <ion-card class="Card1" (click)="choice($event, 5, testId+3)">
+          <ion-card class="Card1" (click)="choice($event, 5, testId+3)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-card-title>
@@ -67,19 +67,14 @@
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
 
                 <ion-row>
-                  <img src={{images[testId+3]}} style="height: 120px;width: 120px;" class="helpIcon" />
+                  <img src={{images[testId+3]}} style="height: 100px;width: 100px;" class="helpIcon" />
                 </ion-row>
               </div>
             </ion-card-content>
           </ion-card>
 
         </div>
-        <ion-row>
-          <h1>Score: {{score}}</h1>
-        </ion-row>
-        <ion-row>
-          <h1>Choices: {{decisions}}</h1>
-        </ion-row>
+        
 
       </ion-grid>
     </div>
@@ -94,6 +89,9 @@
   </ion-content>
 
 
-  <ion-button *ngIf="!showCards" size="large" color="success" (click)="start($event)">Start</ion-button>
-  <ion-button *ngIf="showCards" size="large" color="success" (click)="restart($event)">Restart</ion-button>
+  
+  <ion-button *ngIf="!showCards" size="large" color="success" (click)="start($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Start</ion-button>
+  <ion-button *ngIf="showCards" size="large" color="success" (click)="restart($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Restart</ion-button>
+  <ion-button size="large" color="medium" (click)="restart($event)" style= "position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Leaderboard</ion-button>
+
 </ion-app>

@@ -9,7 +9,6 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  alertCont: AlertController;
   score: number = 0;
   showCards: number = 0;
   decisions: Array<number> = [];
@@ -36,20 +35,20 @@ export class AppComponent {
 
   userSubscription: Subscription;
   
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private alertCont: AlertController) {
     this.userSubscription = this.userService.onStatus().subscribe(status => {
       this.decisions = status;
     })
     this.showCards = 0;
     this.showScore = false;
+  
   }
 
   public async counter(x: number){
     this.score += x;
   }
 
-  public async start(ev: any){
-    this.showAlert();    
+  public async start(ev: any){    
     this.score = 0;
     this.showCards = 1;
     this.userService.sendStatus([])
@@ -67,7 +66,7 @@ export class AppComponent {
 
   public async choice(ev: any, value: number, id: number){
     this.counter(this.points[id]);
-    this.nextQ(id);
+    this.showAlert(id);
   }
 
   public async nextQ(id: number){ 
@@ -81,16 +80,60 @@ export class AppComponent {
     }
   }
 
-  async showAlert() {
+  messages = ["Beef produces 6.61 lbs of CO2 per serving, Pork produces 1.72 lbs, and Poultry 1.26 lbs.",
+    "CDC recommends a shower take 8 minutes, any less is not hygienic and any more is not sustainable.",
+    "Preventing Deforestation, while important, is not one of the UN's 17 named Sustainable Development Goals."];
+  async showAlert(id: number) {
+    if(id <= 6 && id >=4){
+      const alert = await this.alertCont.create({
+        header: 'Did you know...',
+        message: this.messages[0],
+        buttons: [
+          {
+            text: "Okay",
+            handler: () => {
+              this.nextQ(id);
+            }
+          }
+        ]      });
 
-    const alert = await this.alertCont.create({
-      header: 'Alert',
-      subHeader: 'Howdy Yall',
-      message: 'This is an alert message.',
-      buttons: ['OK']
-    });
+      await alert.present(); 
+    }
+    else if(id <= 21 && id >=19){
+      const alert = await this.alertCont.create({
+        header: 'Did you know...',
+        message: this.messages[1],
+        buttons: [
+          {
+            text: "Okay",
+            handler: () => {
+              this.nextQ(id);
+            }
+          }
+        ]      });
 
-    await alert.present();
+      await alert.present(); 
+    } 
+    else if(id <= 24 && id >=22){
+      const alert = await this.alertCont.create({
+        header: 'Did you know...',
+        message: this.messages[2],
+        buttons: [
+          {
+            text: "Okay",
+            handler: () => {
+              this.nextQ(id);
+            }
+          }
+        ]
+      });
+
+      await alert.present(); 
+    }
+    else {
+      this.nextQ(id);
+    }
+
   };
 
   
