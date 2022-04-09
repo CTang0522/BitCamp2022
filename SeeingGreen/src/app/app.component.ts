@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
+import { UserService } from './_services';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,15 @@ export class AppComponent {
   show: boolean = true;
   showCards: boolean = false;
   set: number = 0;
+  decisions: Array<number> = [];
 
+  userSubscription: Subscription;
   
-  constructor() {}
+  constructor(private userService: UserService) {
+    this.userSubscription = this.userService.onStatus().subscribe(status => {
+      this.decisions = status;
+    })
+  }
 
   public async counter(x: number){
     this.score += x;
@@ -23,6 +31,7 @@ export class AppComponent {
     this.set = 0;
     this.show = false;
     this.showCards = true;
+    this.userService.sendStatus([])
   }
 
   public async restart(ev: any){
@@ -30,6 +39,7 @@ export class AppComponent {
     this.set = 0;
     this.show = true;
     this.showCards = false;
+    this.userService.sendStatus([])
   }
 
   public async buttonPress(ev: any){
@@ -42,7 +52,8 @@ export class AppComponent {
     this.nextQ(id);
   }
 
-  public async nextQ(id: number){
-    this.set = id;
+  public async nextQ(id: number){ 
+    this.userService.sendStatus(this.decisions.concat(id))
+    this.set = id
   }
 }
