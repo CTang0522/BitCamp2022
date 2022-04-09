@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  show: boolean = true;
+
+
   constructor() {}
+
+  public async buttonPress(ev: any){
+    this.show = !this.show;
+  }
+
 }

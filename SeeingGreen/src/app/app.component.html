@@ -1,3 +1,15 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-card *ngIf="show">
+    <ion-card-header>
+      <ion-card-title>Seeing Green</ion-card-title>
+      <ion-card-subtitle>Test Your Sustainability</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Take a simple quiz on various daily choices to see just how sustainably you live your life.
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-button size="large" color="medium" (click)="buttonPress($event)">Button</ion-button>
 </ion-app>
