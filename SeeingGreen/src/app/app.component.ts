@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 import { UserService } from './_services';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { UserService } from './_services';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  alertCont: AlertController;
   score: number = 0;
   showCards: number = 0;
   decisions: Array<number> = [];
@@ -47,6 +49,7 @@ export class AppComponent {
   }
 
   public async start(ev: any){
+    this.showAlert();    
     this.score = 0;
     this.showCards = 1;
     this.userService.sendStatus([])
@@ -77,4 +80,19 @@ export class AppComponent {
     this.testId = this.followingQNum[id]
     }
   }
-}
+
+  async showAlert() {
+
+    const alert = await this.alertCont.create({
+      header: 'Alert',
+      subHeader: 'Howdy Yall',
+      message: 'This is an alert message.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  };
+
+  
+
+} 
