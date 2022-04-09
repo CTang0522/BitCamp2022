@@ -10,15 +10,15 @@ import { UserService } from './_services';
 export class AppComponent {
   score: number = 0;
   showCards: boolean = false;
-  set: number = 0;
   decisions: Array<number> = [];
   qNumber = 1;
   testId = 0;
-  images = ["empty", "./assets/Compost.png", "./assets/Recycling.png"];
+  images = ["empty", "./assets/Vegetarian.png", "./assets/Meat.png", "./assets/Mixed.png", "./assets/Beef.png", "./assets/Pork.jpg", "./assets/Poultry.jpg"];
+  text = ["empty", "VEGETARIAN", "MEAT", "MIXED", "BEEF", "PORK", "POULTRY"];
 
   //For the id of the selected answer, directs to the location of the next triple of answers to display
-  followingQNum = [];
-  questions = ["What did you eat in the past 24 hours?"];
+  followingQNum = [0,-1, 3, 3];
+  questions = ["What did you eat in the past 24 hours?", -1, -1, "What made up the majority of the meat you consumed?"];
 
   userSubscription: Subscription;
   
@@ -35,16 +35,16 @@ export class AppComponent {
 
   public async start(ev: any){
     this.score = 0;
-    this.set = 0;
     this.showCards = true;
     this.userService.sendStatus([])
+    this.testId = 0;
   }
 
   public async restart(ev: any){
     this.score = 0;
-    this.set = 0;
     this.showCards = false;
     this.userService.sendStatus([])
+    this.testId = 0;
   }
 
   public async choice(ev: any, value: number, id: number){
@@ -55,7 +55,6 @@ export class AppComponent {
   public async nextQ(id: number){ 
     this.qNumber += 1;
     this.userService.sendStatus(this.decisions.concat(id))
-    this.set = id
-    this.testId = id
+    this.testId = this.followingQNum[id]
   }
 }

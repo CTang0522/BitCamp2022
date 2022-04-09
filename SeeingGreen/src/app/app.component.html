@@ -28,12 +28,12 @@
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-card-title>
-                  COMPOSTING
+                  {{text[testId+1]}}
                 </ion-card-title>
               </div>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-row class="progressWrapper">
-                  <img src={{images[3*testId+1]}} style="height: 120px;width: 120px;" />
+                  <img src={{images[testId+1]}} style="height: 120px;width: 120px;" />
                 </ion-row>
               </div>
             </ion-card-content>
@@ -44,13 +44,29 @@
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
                 <ion-card-title>
-                  RECYCLING
+                  {{text[testId+2]}}
                 </ion-card-title>
               </div>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
 
                 <ion-row>
-                  <img src={{images[3*testId+2]}} style="height: 120px;width: 120px;" class="helpIcon" />
+                  <img src={{images[testId+2]}} style="height: 120px;width: 120px;" class="helpIcon" />
+                </ion-row>
+              </div>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card class="Card1" (click)="choice($event, 5, 3)">
+            <ion-card-content>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <ion-card-title>
+                  {{text[testId+3]}}
+                </ion-card-title>
+              </div>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+
+                <ion-row>
+                  <img src={{images[testId+3]}} style="height: 120px;width: 120px;" class="helpIcon" />
                 </ion-row>
               </div>
             </ion-card-content>
