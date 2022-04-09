@@ -30,4 +30,8 @@ export class AppComponent {
     this.counter(0);
   }
 
+  public async choice(ev: any, value){
+    this.counter(value)
+  }
+
 }
