@@ -10,7 +10,6 @@ export class AppComponent {
   show: boolean = true;
   showCards: boolean = false;
 
-  showRow: boolean = false;
 
   constructor() {}
 
