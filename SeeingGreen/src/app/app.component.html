@@ -22,44 +22,52 @@
 
     <div style="display: flex; align-items: center; justify-content: center;">
       <ion-grid>
-        <ion-card class="Card1" (click)="compost($event)">
-          <ion-card-content>
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-              <ion-card-title>
-                COMPOSTING
-              </ion-card-title>
-            </div>
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-              <ion-row class="progressWrapper">
-                <img src="./assets/Compost.png" style="height: 120px;width: 120px;" />
-              </ion-row>
-            </div>
+        <div *ngIf="set == 0">
 
-          </ion-card-content>
+          <ion-card class="Card1" (click)="choice($event,2,1)">
+            <ion-card-content>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <ion-card-title>
+                  COMPOSTING
+                </ion-card-title>
+              </div>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <ion-row class="progressWrapper">
+                  <img src="./assets/Compost.png" style="height: 120px;width: 120px;" />
+                </ion-row>
+              </div>
+            </ion-card-content>
+          </ion-card>
 
-        </ion-card>
 
+          <ion-card class="Card1" (click)="choice($event, 5,2)">
+            <ion-card-content>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <ion-card-title>
+                  RECYCLING
+                </ion-card-title>
+              </div>
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
 
-        <ion-card class="Card1" (click)="recycle($event)">
-          <ion-card-content>
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-              <ion-card-title>
-                RECYCLING
-              </ion-card-title>
-            </div>
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <ion-row>
+                  <img src="./assets/Recycling.png" style="height: 120px;width: 120px;" class="helpIcon" />
+                </ion-row>
+              </div>
+            </ion-card-content>
+          </ion-card>
 
-              <ion-row>
-                <img src="./assets/Recycling.png" style="height: 120px;width: 120px;" class="helpIcon" />
-              </ion-row>
-            </div>
-          </ion-card-content>
-        </ion-card>
+        </div>
+          <ion-row>
+            <h1>Score: {{score}}</h1>
+          </ion-row>
+        
       </ion-grid>
     </div>
+
+
   </ion-content>
 
 
-  <ion-button *ngIf="show" size="large" color="success" (click)="buttonPress($event)">Start</ion-button>
-  <ion-button *ngIf="!show" size="large" color="success" (click)="buttonPress($event)">Restart</ion-button>
+  <ion-button *ngIf="show" size="large" color="success" (click)="start($event)">Start</ion-button>
+  <ion-button *ngIf="!show" size="large" color="success" (click)="restart($event)">Restart</ion-button>
 </ion-app>
