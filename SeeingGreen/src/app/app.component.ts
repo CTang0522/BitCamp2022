@@ -9,10 +9,16 @@ import { UserService } from './_services';
 })
 export class AppComponent {
   score: number = 0;
-  show: boolean = true;
   showCards: boolean = false;
   set: number = 0;
   decisions: Array<number> = [];
+  qNumber = 1;
+  testId = 0;
+  images = ["empty", "./assets/Compost.png", "./assets/Recycling.png"];
+
+  //For the id of the selected answer, directs to the location of the next triple of answers to display
+  followingQNum = [];
+  questions = ["What did you eat in the past 24 hours?"];
 
   userSubscription: Subscription;
   
@@ -20,6 +26,7 @@ export class AppComponent {
     this.userSubscription = this.userService.onStatus().subscribe(status => {
       this.decisions = status;
     })
+    this.showCards = false;
   }
 
   public async counter(x: number){
@@ -29,7 +36,6 @@ export class AppComponent {
   public async start(ev: any){
     this.score = 0;
     this.set = 0;
-    this.show = false;
     this.showCards = true;
     this.userService.sendStatus([])
   }
@@ -37,14 +43,8 @@ export class AppComponent {
   public async restart(ev: any){
     this.score = 0;
     this.set = 0;
-    this.show = true;
     this.showCards = false;
     this.userService.sendStatus([])
-  }
-
-  public async buttonPress(ev: any){
-    this.show = !this.show;
-    this.showCards = !this.showCards;
   }
 
   public async choice(ev: any, value: number, id: number){
@@ -53,7 +53,9 @@ export class AppComponent {
   }
 
   public async nextQ(id: number){ 
+    this.qNumber += 1;
     this.userService.sendStatus(this.decisions.concat(id))
     this.set = id
+    this.testId = id
   }
 }
