@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
-import { UserService } from './_services';
+import { UserService, LeaderBoard, ScoreService } from './_services';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -33,14 +33,20 @@ export class AppComponent {
 
   explanations = []
 
+  leaderboard:Array<LeaderBoard> = []
+
 
   showScore = false;
 
   userSubscription: Subscription;
+  scoreSubscription: Subscription;
   
-  constructor(private userService: UserService, private alertCont: AlertController) {
+  constructor(private userService: UserService, private alertCont: AlertController, private scoreService: ScoreService) {
     this.userSubscription = this.userService.onStatus().subscribe(status => {
       this.decisions = status;
+    })
+    this.scoreSubscription = this.scoreService.onStatus().subscribe(status => {
+      this.leaderboard = status;
     })
     this.showCards = 0;
     this.showScore = false;
@@ -77,6 +83,18 @@ export class AppComponent {
       this.showScore = true;
       this.showCards = 2;
       this.userService.sendStatus(this.decisions.concat(id))
+      let dt = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+      }
+      const time = new Intl.DateTimeFormat('en-US', options).format(dt)
+      let newLeaderBoard: LeaderBoard = {
+        date: dt.toDateString() + " " + time,
+        score: this.score
+      }
+      this.scoreService.sendStatus(this.leaderboard.concat(newLeaderBoard))
     } else {
     this.qNumber += 1;
     this.userService.sendStatus(this.decisions.concat(id))
@@ -140,9 +158,7 @@ export class AppComponent {
 
   };
 
-  public async choiceArray(){
-    this.decisions;
-  }
+
 
   
 

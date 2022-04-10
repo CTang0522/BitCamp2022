@@ -20,3 +20,28 @@ export class UserService{
     }
 
 }
+
+@Injectable({ providedIn: 'root' })
+export class ScoreService{
+    private score = new Subject<any>();
+    private scoreStatus: any[] = [];
+
+    sendStatus(status: any[]) {
+        this.scoreStatus = status;
+        this.score.next(this.scoreStatus );
+    }
+
+    onStatus(): Observable<any> {
+        return this.score.asObservable();
+    }
+
+    getStatus() {
+        this.score.next(this.scoreStatus)
+    }
+
+}
+
+export interface LeaderBoard{
+    date: string;
+    score: number;
+}
