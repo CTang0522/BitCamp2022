@@ -31,6 +31,9 @@ export class AppComponent {
 
   points = [0,5,-10,-5,-15,-10,-5,5,5,-5,5,-5,-5,-10,5,-3,0,-10,-5,-5,5,-5,-5,-10,5]
 
+  explanations = []
+
+
   showScore = false;
 
   userSubscription: Subscription;
@@ -73,6 +76,7 @@ export class AppComponent {
     if (this.followingQNum[id] == -1) {
       this.showScore = true;
       this.showCards = 2;
+      this.userService.sendStatus(this.decisions.concat(id))
     } else {
     this.qNumber += 1;
     this.userService.sendStatus(this.decisions.concat(id))
@@ -135,6 +139,10 @@ export class AppComponent {
     }
 
   };
+
+  public async choiceArray(){
+    this.decisions;
+  }
 
   
 

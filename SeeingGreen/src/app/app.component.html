@@ -89,6 +89,18 @@
   </ion-content>
 
 
+  <ion-content *ngIf="showCards == 2" style="position: absolute; top: 100px;">
+    <ion-card-header>
+      <ion-card-title>Score Breakdown</ion-card-title>
+      <ion-card>
+        <ion-card-content *ngFor="let i of decisions">
+          <h2>{{text[i]}}: {{points[i]}}</h2>
+
+        </ion-card-content>       
+
+      </ion-card>
+    </ion-card-header>
+  </ion-content>
   
   <ion-button *ngIf="!showCards" size="large" color="success" (click)="start($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Start</ion-button>
   <ion-button *ngIf="showCards" size="large" color="success" (click)="restart($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Restart</ion-button>
