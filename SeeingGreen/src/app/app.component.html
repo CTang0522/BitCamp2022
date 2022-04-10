@@ -1,19 +1,30 @@
 <ion-app>
-  <ion-card *ngIf="showCards == 0">
-    <ion-card-header>
-      <ion-card-title>Seeing Green</ion-card-title>
-      <ion-card-subtitle>Test Your Sustainability</ion-card-subtitle>
-    </ion-card-header>
+  <div *ngIf="showCards == 0">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="display: flex; align-items: center; justify-content: center;">Seeing Green</ion-card-title>
+        <ion-card-subtitle style="display: flex; align-items: center; justify-content: center; top: 6px;">Test Your Sustainability</ion-card-subtitle>
+      </ion-card-header>
 
-    <ion-card-content>
-      Take a simple quiz on various daily choices to see just how sustainably you live your life.
-    </ion-card-content>
-  </ion-card>
+      <ion-card-content>
+        Take a simple quiz on various daily choices to see just how sustainably you live your life.
+        You will start with 100 points and will either lose or gain points as a result of your answers.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="display: flex; align-items: center; justify-content: center;">Leaderboard</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngFor="let i of leaderboard; let x = index">
+        <h2><b>{{x+1}}:</b> {{i.score}} At: {{i.date}}</h2>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 
   <ion-content id="Screen One" *ngIf="showCards == 1">
     <ion-card-header>
-      <div style="display: flex; align-items: center; justify-content: center; position: absolute;">
+      <div style="display: flex; align-items: center; justify-content: center; position: absolute; top: 25px;">
         <ion-card-title>Question {{qNumber}}</ion-card-title>
       </div>
       <div style="display: flex; align-items: center; justify-content: center; position: absolute; top: 60px;">
@@ -21,14 +32,15 @@
       </div>
     </ion-card-header>
 
-    <div style="display: flex; align-items: center; justify-content: center; height: 80%; position: absolute; width: 100%; bottom: 100px;">
+    <div
+      style="display: flex; align-items: center; justify-content: center; height: 80%; position: absolute; width: 100%; bottom: 100px;">
       <ion-grid>
         <div>
 
           <ion-card class="Card1" (click)="choice($event,2,testId+1)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <ion-card-title>
+                <ion-card-title style="font-size: 20px;display: flex; align-items: center; justify-content: center;">
                   {{text[testId+1]}}
                 </ion-card-title>
               </div>
@@ -44,7 +56,7 @@
           <ion-card class="Card1" (click)="choice($event, 5,testId+2)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <ion-card-title>
+                <ion-card-title style="font-size: 20px;display: flex; align-items: center; justify-content: center;">
                   {{text[testId+2]}}
                 </ion-card-title>
               </div>
@@ -60,7 +72,7 @@
           <ion-card class="Card1" (click)="choice($event, 5, testId+3)" style="height: 70%;">
             <ion-card-content>
               <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <ion-card-title>
+                <ion-card-title style="font-size: 20px;display: flex; align-items: center; justify-content: center;">
                   {{text[testId+3]}}
                 </ion-card-title>
               </div>
@@ -74,7 +86,7 @@
           </ion-card>
 
         </div>
-        
+
 
       </ion-grid>
     </div>
@@ -82,31 +94,33 @@
 
   </ion-content>
 
-  <ion-content *ngIf="showCards == 2">
-    <ion-card-header>
-      <ion-card-title>Score: {{score}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      {{leaderboard[0].score}}: {{leaderboard[0].date}}
-    </ion-card-content>
+  <ion-content *ngIf="showCards == 2" style=" top: 15px;">
+      <h1 style="text-align: center; justify-content: center; display: flex;" color = "success">Your Score: {{score}}</h1>
   </ion-content>
 
 
-  <ion-content *ngIf="showCards == 2" style="position: absolute; top: 100px;">
+  <ion-content *ngIf="showCards == 2" style="position: absolute; top: 75px;">
     <ion-card-header>
-      <ion-card-title>Score Breakdown</ion-card-title>
-      <ion-card>
+      <h2 style="text-align: center; justify-content: center; display: flex;">Score Breakdown</h2>
+      <ion-card style="margin-bottom: 275px;">
         <ion-card-content *ngFor="let i of decisions">
           <h2>{{text[i]}}: {{points[i]}}</h2>
+          <h3>{{explanations[i]}}</h3>
 
-        </ion-card-content>       
+        </ion-card-content>
 
       </ion-card>
     </ion-card-header>
   </ion-content>
-  
-  <ion-button *ngIf="!showCards" size="large" color="success" (click)="start($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Start</ion-button>
-  <ion-button *ngIf="showCards" size="large" color="success" (click)="restart($event)" style= "position: absolute;bottom: 65px; align-items: center; justify-content: center; width: 99%;">Restart</ion-button>
-  <ion-button size="large" color="medium" (click)="restart($event)" style= "position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Leaderboard</ion-button>
+
+  <ion-button *ngIf="showCards == 0" size="large" color="success" (click)="start($event)"
+    style="position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Start</ion-button>
+  <ion-button *ngIf="showCards == 1" size="large" color="success" (click)="restart($event)"
+    style="position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Restart
+  </ion-button>
+  <ion-button *ngIf="showCards == 2" size="large" color="success" (click)="restart($event)"
+    style="position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Restart and
+    Leaderboard</ion-button>
+  <!--<ion-button size="large" color="medium" (click)="restart($event)" style= "position: absolute;bottom: 5px; align-items: center; justify-content: center; width: 99%;">Leaderboard</ion-button>-->
 
 </ion-app>
