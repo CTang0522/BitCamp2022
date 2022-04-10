@@ -110,7 +110,8 @@ export class AppComponent {
       }
       const time = new Intl.DateTimeFormat('en-US', options).format(dt)
       let newLeaderBoard: LeaderBoard = {
-        date: dt.toDateString() + " " + time,
+        date: dt.toDateString(),
+        time: time,
         score: this.score
       }
       this.scoreService.sendStatus(this.leaderboard.concat(newLeaderBoard).sort((n1,n2) => {

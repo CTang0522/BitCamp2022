@@ -16,7 +16,7 @@
         <ion-card-title style="display: flex; align-items: center; justify-content: center;">Leaderboard</ion-card-title>
       </ion-card-header>
       <ion-card-content *ngFor="let i of leaderboard; let x = index">
-        <h2><b>{{x+1}}:</b> {{i.score}} At: {{i.date}}</h2>
+        <h2><b>{{x+1}}:</b> {{i.score}} on {{i.date}} at {{i.time}}</h2>
       </ion-card-content>
     </ion-card>
   </div>

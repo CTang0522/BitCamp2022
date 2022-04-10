@@ -43,5 +43,6 @@ export class ScoreService{
 
 export interface LeaderBoard{
     date: string;
+    time: string;
     score: number;
 }
