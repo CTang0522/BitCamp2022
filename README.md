@@ -1,4 +1,5 @@
 # Seeing Green - BitCamp2022
+You can find our submission to BitCamp2022 and our video walkthrough [here](https://devpost.com/software/seeinggreen).
 ## Inspiration
 Going into BitCamp, Christopher was excited to build his first application and upon seeing the Best Educational Hack category he felt incredibly overjoyed at the chance to educate others on the principles of Sustainability. Christopher has spent multiple semesters in Sustainability focused courses for his minor, so being able to share his knowledge incredibly fortuitous. The team was going into BitCamp in order to help Christopher make his first mobile application and allow Samantha to impart knowledge onto him before graduating college. The team wanted to make the application a fun and interesting game like the "choose your own adventure" stories we grew up reading.
 
